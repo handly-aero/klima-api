@@ -6,7 +6,7 @@
     },
     "title": "API Klima",
     "version": "1.0",
-    "description": "A API Klima está organizada em [REST](https://en.wikipedia.org/wiki/Representational_state_transfer), particularmente usando [JSON:API spec](https://jsonapi.org/). Nossa API tem URLs orientadas a recursos, retorna respostas JSON e usa códigos e verbos de resposta HTTP padrão.\n\n# Introdução\n\nA API Klima está dividida em casos de uso distintos.\n\n[Observações meteorológicas](#tag/Observações-meteorológicas) que fornece \"endpoints\" para observações meteorológicas presentes ou passadas.\n\n[Previsões meteorológicas](#x-tagGroups/Previsões-meteorológicas) que fornece \"endpoints\" para previsões meteorológicas (em desenvolvimento).",
+    "description": "A API Klima está organizada em [REST](https://en.wikipedia.org/wiki/Representational_state_transfer), particularmente usando [JSON:API spec](https://jsonapi.org/). Nossa API tem URLs orientadas a recursos, retorna respostas JSON e usa códigos e verbos de resposta HTTP padrão.\n\n# Introdução\n\nA API Klima está dividida em casos de uso distintos.\n\n[Observações meteorológicas](#tag/Microclima) que fornece \"endpoints\" para observações meteorológicas presentes ou passadas.\n\n[Previsões meteorológicas](#x-tagGroups/Previsões-meteorológicas) que fornece \"endpoints\" para previsões meteorológicas (em desenvolvimento).",
     "contact": {
       "email": "klimadata@gmail.com"
     },
@@ -20,12 +20,17 @@
       "url": "https://www.klimadata.com/_functions/pws/observations"
     }
   ],
+  "tags": [
+    {
+      "name": "Microclima",
+      "description": "Observações"
+    }
+  ],
   "x-tagGroups": [
     {
       "name": "Observações meteorológicas",
       "tags": [
-        "Condições atuais",
-        "Histórico"
+        "Microclima"
       ]
     },
     {
@@ -139,7 +144,7 @@
           }
         },
         "tags": [
-          "Observações meteorológicas"
+          "Microclima"
         ]
       }
     },
@@ -258,7 +263,7 @@
           }
         },
         "tags": [
-          "Observações meteorológicas"
+          "Microclima"
         ]
       },
       "parameters": []
@@ -467,13 +472,5 @@
         }
       }
     }
-  },
-  "tags": [
-    {
-      "name": "Observações meteorológicas"
-    },
-    {
-      "name": "Previsões meteorológicas"
-    }
-  ]
+  }
 }
