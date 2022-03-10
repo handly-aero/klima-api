@@ -312,7 +312,10 @@
                 "stationId": {
                   "type": "string",
                   "minLength": 1,
-                  "description": "A identificação da estação meteorológica que forneceu as observações das condições atuais."
+                  "description": "A identificação da estação meteorológica que forneceu as observações das condições atuais.",
+                  "enum": [
+                    "klima4g"
+                  ]
                 },
                 "obsTimeUtc": {
                   "type": "string",
