@@ -1,0 +1,479 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "x-logo": {
+      "url": "https://static.wixstatic.com/media/737a3b_0e54bc444677415ca6b25262d8a4a74c~mv2.png"
+    },
+    "title": "API Klima",
+    "version": "1.0",
+    "description": "A API Klima está organizada em [REST](https://en.wikipedia.org/wiki/Representational_state_transfer), particularmente usando [JSON:API spec](https://jsonapi.org/). Nossa API tem URLs orientadas a recursos, retorna respostas JSON e usa códigos e verbos de resposta HTTP padrão.\n\n# Introdução\n\nA API Klima está dividida em casos de uso distintos.\n\n[Observações meteorológicas](#tag/Observações-meteorológicas) que fornece \"endpoints\" para observações meteorológicas presentes ou passadas.\n\n[Previsões meteorológicas](#x-tagGroups/Previsões-meteorológicas) que fornece \"endpoints\" para previsões meteorológicas (em desenvolvimento).",
+    "contact": {
+      "email": "klimadata@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.klimadata.com/_functions/pws/observations"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Observações meteorológicas",
+      "tags": [
+        "Condições atuais",
+        "Histórico"
+      ]
+    },
+    {
+      "name": "Previsões meteorológicas",
+      "tags": []
+    }
+  ],
+  "paths": {
+    "/current": {
+      "get": {
+        "summary": "PWS Observações - Atual",
+        "description": "PWS Observações - Atual retorna as observações das condições atuais para a estação meteorológica selecionada. As condições atuais correspondem ao último registro relatado nos últimos 60 minutos. Se a estação não relatou uma condição atual nos últimos 60 minutos, a resposta não retornará um registro de observação expirado (mais de 60 minutos); uma mensagem “Dados expirados” será retornada em seu lugar.",
+        "operationId": "listCurrentObs",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "A chave da API fornecida pela Klima Data quando você assinou o plano de acesso às observações meteorológicas.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "A identificação da estação meteorológica para a qual se deseja as observações das condições atuais.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/arrayOfObservations"
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Bad Request",
+                        "message": "The request path '/time' was not recognized. Please, check the API documentation",
+                        "code": 400
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Forbidden",
+                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' is an incorrect apiKey. Please, verify your apiKey and resubmit",
+                        "code": 403
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Not Found",
+                        "message": "No charges were found for 'SBAB'",
+                        "code": 404
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Observações meteorológicas"
+        ]
+      }
+    },
+    "/historical": {
+      "get": {
+        "summary": "PWS Observações - Histórico",
+        "description": "PWS Observações - Histórico retorna o histórico de observações das condições para a estação meteorológica selecionada. As condições correspondem aos registros relatados a partir da data selecionada até a observação mais recente disponível.",
+        "operationId": "listPastObs",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "A chave da API fornecida pela Klima Data quando você assinou o plano de acesso às observações meteorológicas.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "A identificação da estação meteorológica para a qual se deseja as observações das condições históricas.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "startDate",
+            "description": "A data de início das observações históricas a serem retornadas, no formato YYYY-MM-DD (exemplo: 2021-05-01)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/arrayOfObservations"
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Bad Request",
+                        "message": "The request path '/time' was not recognized. Please, check the API documentation",
+                        "code": 400
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Forbidden",
+                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' is an incorrect apiKey. Please, verify your apiKey and resubmit",
+                        "code": 403
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errorMsg"
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "error": {
+                        "type": "Not Found",
+                        "message": "No charges were found for 'SBAB'",
+                        "code": 404
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Observações meteorológicas"
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "arrayOfObservations": {
+        "description": "Nota: A tabela abaixo não representa necessariamente a ordem de classificação da resposta da API.",
+        "type": "object",
+        "x-examples": {
+          "example 1": {
+            "observations": [
+              {
+                "stationId": "klima4g",
+                "obsTimeUtc": "2021-03-30T14:14:37.000Z",
+                "temp": "27,2",
+                "humidity": "48",
+                "dewpt": "15,3",
+                "abspressure": "890",
+                "relpressure": "1.015",
+                "winddir": "168",
+                "windSpeed": "7,4",
+                "windgust": "12,5",
+                "solarRadiation": "1,52",
+                "uv": "3",
+                "precipRate": "5,6",
+                "dailyrain": "23",
+                "weeklyrain": "78",
+                "monthlyrain": "239",
+                "yearlyrain": "1.265",
+                "soilmoisture": "34"
+              }
+            ]
+          }
+        },
+        "title": "arrayOfObservations",
+        "properties": {
+          "observations": {
+            "type": "array",
+            "uniqueItems": true,
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "stationId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "A identificação da estação meteorológica que forneceu as observações das condições atuais."
+                },
+                "obsTimeUtc": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Tempo Universal Coordenado (UTC) / GMT",
+                  "enum": [
+                    "2021-03-30T14:14:37.000Z"
+                  ]
+                },
+                "temp": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Temperatura",
+                  "enum": [
+                    "ºC"
+                  ]
+                },
+                "humidity": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Umidade relativa do ar",
+                  "enum": [
+                    "%"
+                  ]
+                },
+                "dewpt": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Ponto de orvalho. A temperatura para a qual a umidade relativa da massa de ar em consideração atinge 100%.",
+                  "enum": [
+                    "ºC"
+                  ]
+                },
+                "abspressure": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Pressão atmosférica ao nível da estação.",
+                  "enum": [
+                    "hPa"
+                  ]
+                },
+                "relpressure": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Pressão média do ar ao nível do mar, calculada a partir da leitura de pressão ao nível da estação.",
+                  "enum": [
+                    "hPa"
+                  ]
+                },
+                "winddir": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Direção do vento (de onde o vento vem).",
+                  "enum": [
+                    "º"
+                  ]
+                },
+                "windSpeed": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Velocidade \"instantânea\" do vento.",
+                  "enum": [
+                    "km/h"
+                  ]
+                },
+                "windgust": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Rajada máxima de vento. A máxima medida da velocidade do vento ocorrida entre a observação anterior e a observação atual.",
+                  "enum": [
+                    "km/h"
+                  ]
+                },
+                "solarRadiation": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Radiação solar."
+                },
+                "uv": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Leitura UV da intensidade de radiação solar."
+                },
+                "precipRate": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Taxa de precipitação “instantânea”. Quanta chuva cairia se a intensidade da precipitação não mudasse por uma hora.",
+                  "enum": [
+                    "mm/h"
+                  ]
+                },
+                "dailyrain": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Precipitação acumulada no dia (00:00 até 23:59). É zerado às 00:00 todos os dias.",
+                  "enum": [
+                    "mm"
+                  ]
+                },
+                "weeklyrain": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Precipitação acumulada na semana (domingo a sábado). É zerado todo domingo às 00:00.",
+                  "enum": [
+                    "mm"
+                  ]
+                },
+                "monthlyrain": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Precipitação acumulada no mês (calendário). É zerado todo primeiro dia do mês às 00:00.",
+                  "enum": [
+                    "mm"
+                  ]
+                },
+                "yearlyrain": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Precipitação acumulada no ano (calendário). É zerado todo primeiro dia do ano às 00:00.",
+                  "enum": [
+                    "mm"
+                  ]
+                },
+                "soilmoisture": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Umidade do solo.",
+                  "enum": [
+                    "%"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "errorMsg": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "A frase relacionada ao código de status da resposta HTTP."
+              },
+              "message": {
+                "type": "string",
+                "description": "A mensagem que explica a resposta."
+              },
+              "code": {
+                "type": "integer",
+                "description": "Código de status de resposta HTTP."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Observações meteorológicas"
+    },
+    {
+      "name": "Previsões meteorológicas"
+    }
+  ]
+}
