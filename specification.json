@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "x-logo": {
-      "url": "https://static.wixstatic.com/media/737a3b_0e54bc444677415ca6b25262d8a4a74c~mv2.png"
+      "url": "https://static.wixstatic.com/media/c6ec0a_aaf55b54b6e04baab9e73436253631df~mv2.png/v1/fill/w_92,h_92,al_c,usm_0.66_1.00_0.01,enc_auto/klima.png"
     },
     "title": "API Klima",
     "version": "1.0",
