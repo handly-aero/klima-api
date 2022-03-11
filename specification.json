@@ -120,7 +120,7 @@
                     "value": {
                       "error": {
                         "type": "Bad Request",
-                        "message": "The request path '/time' was not recognized. Please, check the API documentation",
+                        "message": "O endereço da requisição não foi reconhecido. Por favor, verifique a documentação da API.",
                         "code": 400
                       }
                     }
@@ -141,7 +141,7 @@
                     "value": {
                       "error": {
                         "type": "Forbidden",
-                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' is an incorrect apiKey. Please, verify your apiKey and resubmit",
+                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' é uma apiKey incorreta. Verifique sua apiKey e envie novamente",
                         "code": 403
                       }
                     }
@@ -162,7 +162,7 @@
                     "value": {
                       "error": {
                         "type": "Not Found",
-                        "message": "No charges were found for 'SBAB'",
+                        "message": "A estação 'xyz' não foi encontrada. Por favor, verifique e envie novamente.",
                         "code": 404
                       }
                     }
@@ -269,7 +269,7 @@
                     "value": {
                       "error": {
                         "type": "Bad Request",
-                        "message": "The request path '/time' was not recognized. Please, check the API documentation",
+                        "message": "O endereço da requisição não foi reconhecido. Por favor, verifique a documentação da API.",
                         "code": 400
                       }
                     }
@@ -290,7 +290,7 @@
                     "value": {
                       "error": {
                         "type": "Forbidden",
-                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' is an incorrect apiKey. Please, verify your apiKey and resubmit",
+                        "message": "'550c66847abcd0a2f0704cce2fc52ca7' é uma apiKey incorreta. Verifique sua apiKey e envie novamente",
                         "code": 403
                       }
                     }
@@ -311,7 +311,7 @@
                     "value": {
                       "error": {
                         "type": "Not Found",
-                        "message": "No charges were found for 'SBAB'",
+                        "message": "A estação 'xyz' não foi encontrada. Por favor, verifique e envie novamente.",
                         "code": 404
                       }
                     }
