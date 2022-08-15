@@ -81,24 +81,24 @@
                       {
                         "observations": [
                           {
-                            "stationId": "klima4g",
+                            "stationId": "tcc",
                             "obsTimeUtc": "2021-03-30T14:14:37.000Z",
-                            "temp": "27,2",
-                            "humidity": "48",
-                            "dewpt": "15,3",
-                            "abspressure": "890",
-                            "relpressure": "1.015",
-                            "winddir": "168",
-                            "windSpeed": "7,4",
-                            "windgust": "12,5",
-                            "solarRadiation": "1,52",
-                            "uv": "3",
-                            "precipRate": "5,6",
-                            "dailyrain": "23",
-                            "weeklyrain": "78",
-                            "monthlyrain": "239",
-                            "yearlyrain": "1.265",
-                            "soilmoisture": "34"
+                            "temp": 27.2,
+                            "humidity": 48,
+                            "dewpt": 15.3,
+                            "abspressure": 890,
+                            "relpressure": 1015,
+                            "winddir": 168,
+                            "windSpeed": 7.4,
+                            "windgust": 12.5,
+                            "solarRadiation": 633,
+                            "uv": 3,
+                            "precipRate": 5.6,
+                            "dailyrain": 23,
+                            "weeklyrain": 78,
+                            "monthlyrain": 239,
+                            "yearlyrain": 1265,
+                            "soilmoisture": 34
                           }
                         ]
                       }
@@ -229,24 +229,24 @@
                       {
                         "observations": [
                           {
-                            "stationId": "klima4g",
+                            "stationId": "tcc",
                             "obsTimeUtc": "2021-03-30T14:14:37.000Z",
-                            "temp": "27,2",
-                            "humidity": "48",
-                            "dewpt": "15,3",
-                            "abspressure": "890",
-                            "relpressure": "1.015",
-                            "winddir": "168",
-                            "windSpeed": "7,4",
-                            "windgust": "12,5",
-                            "solarRadiation": "1,52",
-                            "uv": "3",
-                            "precipRate": "5,6",
-                            "dailyrain": "23",
-                            "weeklyrain": "78",
-                            "monthlyrain": "239",
-                            "yearlyrain": "1.265",
-                            "soilmoisture": "34"
+                            "temp": 27.2,
+                            "humidity": 48,
+                            "dewpt": 15.3,
+                            "abspressure": 890,
+                            "relpressure": 1015,
+                            "winddir": 168,
+                            "windSpeed": 7.4,
+                            "windgust": 12.5,
+                            "solarRadiation": 633,
+                            "uv": 3,
+                            "precipRate": 5.6,
+                            "dailyrain": 23,
+                            "weeklyrain": 78,
+                            "monthlyrain": 239,
+                            "yearlyrain": 1265,
+                            "soilmoisture": 34
                           },
                           {}
                         ]
@@ -335,31 +335,31 @@
         "type": "object",
         "x-examples": {
           "example": {
-            "stationId": "klima4g",
+            "stationId": "tcc",
             "obsTimeUtc": "2021-03-30T14:14:37.000Z",
-            "temp": "27,2",
-            "humidity": "48",
-            "dewpt": "15,3",
-            "abspressure": "890",
-            "relpressure": "1.015",
-            "winddir": "168",
-            "windSpeed": "7,4",
-            "windgust": "12,5",
-            "solarRadiation": "1,52",
-            "uv": "3",
-            "precipRate": "5,6",
-            "dailyrain": "23",
-            "weeklyrain": "78",
-            "monthlyrain": "239",
-            "yearlyrain": "1.265",
-            "soilmoisture": "34"
+            "temp": 27.2,
+            "humidity": 48,
+            "dewpt": 15.3,
+            "abspressure": 890,
+            "relpressure": 1015,
+            "winddir": 168,
+            "windSpeed": 7.4,
+            "windgust": 12.5,
+            "solarRadiation": 633,
+            "uv": 3,
+            "precipRate": 5.6,
+            "dailyrain": 23,
+            "weeklyrain": 78,
+            "monthlyrain": 239,
+            "yearlyrain": 1265,
+            "soilmoisture": 34
           }
         },
         "properties": {
           "stationId": {
             "type": "string",
             "description": "A identificação da estação meteorológica que forneceu as observações das condições atuais.",
-            "example": "klima4g"
+            "example": "tcc"
           },
           "obsTimeUtc": {
             "type": "string",
@@ -369,82 +369,82 @@
           "temp": {
             "type": "string",
             "description": "Temperatura (°C)",
-            "example": "27,2"
+            "example": 27.2
           },
           "humidity": {
             "type": "string",
             "description": "Umidade relativa do ar (%)",
-            "example": "48"
+            "example": 48
           },
           "dewpt": {
             "type": "string",
-            "example": "15,3",
+            "example": 15.3,
             "description": "Ponto de orvalho. A temperatura para a qual a umidade relativa da massa de ar em consideração atinge 100%. (°C)"
           },
           "abspressure": {
             "type": "string",
             "description": "Pressão atmosférica ao nível da estação (hPa).",
-            "example": "890"
+            "example": 890
           },
           "relpressure": {
             "type": "string",
             "description": "Pressão média do ar ao nível do mar, calculada a partir da leitura de pressão ao nível da estação (hPa).",
-            "example": "1.015"
+            "example": 1015
           },
           "winddir": {
             "type": "string",
-            "example": "168",
+            "example": 168,
             "description": "Direção do vento (de onde o vento vem). (°)"
           },
           "windSpeed": {
             "type": "string",
             "description": "Velocidade \"instantânea\" do vento (km/h).",
-            "example": "7,4"
+            "example": 7.4
           },
           "windgust": {
             "type": "string",
             "description": "Rajada máxima de vento. A máxima medida da velocidade do vento ocorrida entre a observação anterior e a observação atual (km/h).",
-            "example": "12,5"
+            "example": 12.5
           },
           "solarRadiation": {
             "type": "string",
             "description": "Radiação solar.",
-            "example": "1,52"
+            "example": 633
           },
           "uv": {
             "type": "string",
             "description": "Leitura UV da intensidade de radiação solar.",
-            "example": "3"
+            "example": 3
           },
           "precipRate": {
             "type": "string",
             "description": "Taxa de precipitação “instantânea”. Quanta chuva cairia se a intensidade da precipitação não mudasse por uma hora (mm/h).",
-            "example": "5,6"
+            "example": 5.6
           },
           "dailyrain": {
             "type": "string",
             "description": "Precipitação acumulada no dia (00:00 até 23:59). É zerado às 00:00 todos os dias. (mm)",
-            "example": "23"
+            "example": 23
           },
           "weeklyrain": {
             "type": "string",
             "description": "Precipitação acumulada na semana (domingo a sábado). É zerado todo domingo às 00:00. (mm)",
-            "example": "78"
+            "example": 78
           },
           "monthlyrain": {
             "type": "string",
             "description": "Precipitação acumulada no mês (calendário). É zerado todo primeiro dia do mês às 00:00. (mm)",
-            "example": "239"
+            "example": 239
           },
           "yearlyrain": {
             "type": "string",
             "description": "Precipitação acumulada no ano (calendário). É zerado todo primeiro dia do ano às 00:00. (mm)",
-            "example": "1.265"
+            "example": 1265
           },
           "soilmoisture": {
             "type": "string",
             "description": "Umidade do solo. (%)",
-            "example": "34"
+            "example": 34
           }
         }
       },
